@@ -1,0 +1,54 @@
+* KanBan - Sprint 1
+
+|      | to do | on going | test | done                |
+|------+-------+----------+------+---------------------|
+| All  |       |          |      | [T1]T               |
+| US#1 |       |          |      | [T2 T3]A  [T4]N     |
+| US#2 |       |          |      | [T5 T6]N [T7]T      |
+| US#3 |       |          |      | [T8 T9 T10]N [T11]T |
+| US#4 |       |          |      | [T12 T13]T [T14]A   |
+| US#5 |       |          |      | [T15 T16]T [T17]A   |
+| US#6 |       |          |      | [T18 T19]A [T20]N   |
+
+
+**** Liste des tâches
+
++ T1 : menu importé depuis un fichier séparé (on devra utiliser infosDeveloppeur(id_dev) et listeProjetsDeveloppeur(id_dev))
+
++ T2 : MySql : ajoutNouveauDeveloppeur(prenom, nom, pseudo, mail, mdp, url_avatar)
++ T3 : Web : page d’inscription
++ T4 : Test E2E US#1
+
++ T5 : MySql : vérifications de la correspondance et de la présence du couple (pseudo,mdp) dans la table Developpeur avec estDeveloppeur(pseudo, mdp)
++ T6 : Web : page de connexion
++ T7 : Test E2E US#2
+
++ T8 : MySql : infosDeveloppeur(id_dev)
++ T9 : HTML : mailerInfosModifiees(id_dev, prenom, nom, mdp, url_avatar)
++ T10 : Web : page de profil et de modification du profil
++ T11 : Test E2E US#3
+
++ T12 : MySql : listeProjets()
++ T13 : Web : page d’accueil
++ T14 : Test E2E US#4
+
++ T15 : MySql : listeProjetsDev(id_dev)
++ T16 : Web : volet de navigation avec distinction des projets grâce à  listeProjetsDev(id_dev) et listeProjets()
++ T17 : Test E2E US#5
+
++ T18 : MySql : infosProjet(id_projet)
++ T19 : Web : page projet
++ T20 : Test E2E US#6
+
+
+**** UserStories
+
+*inscription/connexion*
++ US#1 : En tant que visiteur je souhaite m’inscrire en tant que développeur.
++ US#2 : En tant que visiteur je souhaite m’identifier en tant que développeur.
++ US#3 : En tant que développeur je souhaite visualiser/modifier mon profil.
++ US#4 : En tant que visiteur/développeur je souhaite visualiser la liste des projets.
++ US#5 : En tant que développeur je souhaite repérer et accéder partout sur le site aux projets auxquels je suis associé et à ceux auxquels je ne le suis pas.
+*projet*
++ US#6 : En tant que visiteur/développeur je souhaite visualiser la fiche récapitulative d’un projet.
+ 

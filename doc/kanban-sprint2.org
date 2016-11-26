@@ -1,0 +1,56 @@
+* KanBan - Sprint 2
+
+|       | to do          | on going | test   | done              |
+|-------+----------------+----------+--------+-------------------|
+| US#7  |                |          |        | [T1 T2]N [T15]T   |
+| US#8  |                |          |        | [T3 T4]N [T16]T   |
+| US#9  |                |          |        | [T5 T6]T [T17]A   |
+| US#10 |                |          |        | [T7 T8]T [T18]A   |
+| US#11 |                |          |        | [T9 T10]T [T19]A  |
+| US#12 |                |          |        | [T11 T12]A [T20]N |
+| US#13 |                |          |        | [T13 T14]A [T21]N |
+
+
+**** Liste des tâches
+
++ T1 : MySql : ajouterProjet(#infos), modifierProjet(id_pro, #infos), supprimerProjet(id_pro),
++ T2 : Web : page de modification d’un projet (formulaireProjet.php) et actions ajout/suppression
++ T15 : Test E2E US#7
+
++ T3 : MySql : listerDevs(), selectionnerScrumMaster(id_pro, id_dev), selectionnerProductOwner(id_pro, id_dev), selectionnerDev(id_pro, id_dev)
++ T4 : Web : liste de développeurs (menu déroulant ou non, à cocher ou non, sélection multiple ou non …) dans la page formulaireProjet.php
++ T16 : Test E2E US#8
+
++ T5 : MySql : listerUS(id_pro)
++ T6 : Web : page backlog.php (mise en page du tableau)
++ T17 : Test E2E US#9
+
++ T7 : MySql : ajouterUS(#infos), modifierUS(id_us, #infos), supprimerUS(id_us)
++ T8 : Web : page de modification d’une US (formulaireUS.php) et actions ajout/suppression
++ T18 : Test E2E US#10
+
++ T9 : MySql : modifierPrioriteUS(id_us, priorite)
++ T10 : Web : pour un PO connecté : modification de la prio dans la page formulaireUS.php
++ T19 : Test E2E US#11
+
++ T11 : MySql : listerSprint(id_pro), infosSprint(id_sprint)
++ T12 : Web : pages listeSprints.php et sprint.php
++ T20 : Test E2E US#12
+
++ T13 : MySql : ajouterSprint(#infos), modifierSprint(id_sprint, #infos), supprimerSprint(id_sprint)
++ T14 : Web : page de modification d’un sprint (formulaireSprint.php) et actions ajout/suppression
++ T21 : Test E2E US#13
+
+
+**** User Stories
+
+*projet*
++ US#7 : En tant que développeur je souhaite ajouter/éditer/supprimer mes projets.
++ US#8 : En tant que développeur je souhaite sélectionner/retirer des développeurs à mes projets (via leur identifiant) et identifier un ScrumMaster et un ProductOwner.
+*backlog*
++ US#9 : En tant que visiteur/développeur je souhaite visualiser le backlog d’un projet.
++ US#10 : En tant que développeur je souhaite ajouter/éditer/supprimer une US d'un sprint d'un projet auquel je suis associé.
++ US#11 : En tant que ProductOwner je souhaite modifier la priorité des US.
+*sprints*
++ US#12 : En tant que visiteur/développeur je souhaite avoir une vue générale des sprints d’un projet et une vue spécifique sur un sprint.
++ US#13 : En tant que développeur je souhaite ajouter/éditer/supprimer un sprint dans un projet auquel je suis associé.

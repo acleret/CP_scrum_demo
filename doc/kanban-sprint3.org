@@ -1,0 +1,73 @@
+* KanBan - Sprint 3
+
+|       | to do                               | on going | test   | done          |
+|-------+-------------------------------------+----------+--------+---------------|
+| US#14 |                                     |          | [T3]N  | [T1 T2]A      |
+| US#15 | [T5]N T6                            | [T4]N    |        |               |
+| US#16 | [T8]N T9                            | [T7]N    |        |               |
+| US#17 |                                     |          | [T12]N | [T10]T [T11]A |
+| US#18 | T15                                 | [T14]A   |        | [T13]T        |
+| US#19 | [T16 T17 T18]T T19                  |          |        |               |
+|-------+-------------------------------------+----------+--------+---------------|
+| Bonus | T20 T21 T22 T23 T24 T25 T27 T28 T29 |          |        | [T26]A        |
+
+
+**** Liste des tâches
+
++ T1 : MySql : infosSprint(spr), listeUserStorySprint(spr), listeUserStoryOutOfSprint(spr, pro), affecterUserStorySprint(us, $id_sprint), retirerUserStorySprint(us)
++ T2 : Web : Sprint.php (2 tableaux)
++ T3 : test E2E US#14
+
++ T4 : MySql : listeTachesUS(id_us), listeTachesSprint(id_spr)
++ T5 : Web : Kanban.php
++ T6 : test E2E US#15
+
++ T7 : MySql : ajouterTache(#infos) modifierTache(id_tache, #infos) supprimerTache(id_tache)
++ T8 : Web : Kanban.php
++ T9 : test E2E US#16
+
++ T10 : MySql : listeUS(id_projet) 
++ T11 : Web : tracabilite.php (au gout du dev pour l’affichage des noms d’US)
++ T12 : test E2E US#17
+
++ T13 : MySql : modifUserStoryTracabilite(...))
++ T14 : Web : tracabilite.php
++ T15 : test E2E US#18
+
++ T16 : MySql : sommeChiffrageBacklog(id_pro) sommeChiffrageSprint(id_spr)Web :
++ T17 : ajouter dans listeSprints.php/backlog.php le chiffrage total de chaque sprint/backlog
++ T18 : burndownChart.php
++ T19 : test E2E US#19
+
+
+****** Tâches bonus
+
++ T20 : Possibilité de confirmer ou annuler une suppression
++ T21 : Tableaux uniformes
++ T22 : Case à cocher “Rester connecté” dans connexion.php
++ T23 : Empêcher le html/php/css dans les champs textes
++ T24 : Lexique (infobulle, page php)
++ T25 : verifier que les sprints d’un projet aient la meme durée
++ T26 : couleurs des boutons uniformes (supprimer en rouge, modifier/annuler en blanc, ajouter/valider en bleu)
++ T27 : liste déroulante dans la barre de navigation 
++ T28 : mettre tous les formulaires ajout/modification dans un fenêtre modale
++ T29 : Message d’information après n’importe quelle action (rouge et vert)
++ T30 : Uniformité dans les heads (noms des onglets)
+
+
+**** User Stories
+
+*sprint*
++ US#14 : En tant que développeur je souhaite sélectionner/retirer une US du backlog dans l’édition des sprints d'un projet auquel je suis associé.                           
+*kanban*                                                                                                                                                                                 
++ US#15 : En tant que visiteur/développeur je souhaite visualiser le kanban d’un sprint d’un projet.                                                                          
++ US#16 : En tant que développeur je souhaite ajouter/modifier/supprimer une tâche d'une US d'un projet auquel je suis associé.                                               
+*traçabilité*                                                                                                                                                                            
++ US#17 : En tant que visiteur/développeur je souhaite visualiser la traçabilité d’un projet.                                                                                 
++ US#18 : En tant que développeur je souhaite ajouter le commit et la date d’une US d'un projet auquel je suis associé.                                                       
+*avancement*                                                                                                                                                                             
++ US#19 : En tant que visiteur/développeur je souhaite visualiser l’avancement (burdown chart) d’un projet en temps réel.                                                     
+
+
+
+

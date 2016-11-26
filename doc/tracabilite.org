@@ -1,0 +1,55 @@
+* Traçabilité
+
+| US#   | #commit                                  | date     |
+|-------+------------------------------------------+----------|
+| US#1  | 6177e9ff92e3d0da4726c17c17ac86f06e43c5be | 04/11/16 |
+| US#2  | fd8975c1550ae74ab9934d900ada299a941d985c | 04/11/16 |
+| US#3  | fd8975c1550ae74ab9934d900ada299a941d985c | 04/11/16 |
+| US#4  | d08d49ff98126941f3e066ef515430b0c641b308 | 04/11/16 |
+| US#5  | d08d49ff98126941f3e066ef515430b0c641b308 | 04/11/16 |
+| US#6  | 6177e9ff92e3d0da4726c17c17ac86f06e43c5be | 04/11/16 |
+| US#7  | 4d2e68d9147a6f693d54ea11d0da5451a134abe2 | 22/11/16 |
+| US#8  | da0912316e04563585279ae1365dd3e941ceaaa1 | 25/11/16 |
+| US#9  | dd147b8765632e2f6fec2434c71f82bb1920215b | 18/11/16 |
+| US#10 | dd147b8765632e2f6fec2434c71f82bb1920215b | 18/11/16 |
+| US#11 | dd147b8765632e2f6fec2434c71f82bb1920215b | 18/11/16 |
+| US#12 |                                          |          |
+| US#13 |                                          |          |
+| US#14 |                                          |          |
+| US#15 |                                          |          |
+| US#16 |                                          |          |
+| US#17 |                                          |          |
+| US#18 |                                          |          |
+| US#19 |                                          |          |
+
+
+**** UserStories
+
+*inscription*
++ US#1 : En tant que visiteur je souhaite m’inscrire en tant que développeur.                                                              
++ US#2 : En tant que visiteur je souhaite m’identifier en tant que développeur.                                                                  
++ US#3 : En tant que développeur je souhaite visualiser/modifier mon profil.                                                                    
++ US#4 : En tant que visiteur/développeur je souhaite visualiser la liste des projets.                                                              
++ US#5 : En tant que développeur je souhaite repérer et accéder partout sur le site aux projets auxquels je suis associé et à ceux auxquels je ne le suis pas.              
+*projet*                                                                                                                      
++ US#6 : En tant que visiteur/développeur je souhaite visualiser la fiche récapitulative d’un projet.                                                    
++ US#7 : En tant que développeur je souhaite ajouter/éditer/supprimer mes projets.                                                                
++ US#8 : En tant que développeur je souhaite sélectionner/retirer des développeurs à mes projets (via leur identifiant) et identifier un ScrumMaster et un ProductOwner.       
+*backlog*                                                                                                                      
++ US#9 : En tant que visiteur/développeur je souhaite visualiser le backlog d’un projet.                                                            
++ US#10 : En tant que développeur je souhaite ajouter/éditer/supprimer une US d'un sprint d'un projet auquel je suis associé.                                    
++ US#11 : En tant que ProductOwner je souhaite modifier la priorité des US.                                                                      
+*sprints*                                                                                                                                                      
++ US#12 : En tant que visiteur/développeur je souhaite avoir une vue générale des sprints d’un projet et une vue spécifique sur un sprint.                                         
++ US#13 : En tant que développeur je souhaite ajouter/éditer/supprimer un sprint dans un projet auquel je suis associé.                                                            
++ US#14 : En tant que développeur je souhaite sélectionner/retirer une US du backlog dans l’édition des sprints d'un projet auquel je suis associé.                                
+*kanban*                                                                                                                                                                                 
++ US#15 : En tant que visiteur/développeur je souhaite visualiser le kanban d’un sprint d’un projet.                                                                               
++ US#16 : En tant que développeur je souhaite ajouter/modifier/supprimer une tâche d'une US d'un projet auquel je suis associé.                                                    
+*traçabilité*                                                                                                                                                                            
++ US#17 : En tant que visiteur/développeur je souhaite visualiser la traçabilité d’un projet.                                                                                      
++ US#18 : En tant que développeur je souhaite ajouter le commit et la date d’une US d'un projet auquel je suis associé.                                                            
+*avancement*                                                                                                                                                                             
++ US#19 : En tant que visiteur/développeur je souhaite visualiser l’avancement (burdown chart) d’un projet en temps réel.                                                          
+
+

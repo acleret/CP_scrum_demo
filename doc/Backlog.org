@@ -1,0 +1,39 @@
+* Backlog
+
+| *#US* | *US*                                                                                                                                                            | *chiffrage* | *priorité* |
+|-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------+------------|
+|       | *inscription/connexion*                                                                                                                                         |             |            |
+| US#1  | En tant que visiteur je souhaite m’inscrire en tant que développeur.                                                                                            |           5 |          1 |
+| US#2  | En tant que visiteur je souhaite m’identifier en tant que développeur.                                                                                          |           3 |          1 |
+| US#3  | En tant que développeur je souhaite visualiser/modifier mon profil.                                                                                             |           2 |          5 |
+| US#4  | En tant que visiteur/développeur je souhaite visualiser la liste des projets.                                                                                   |           3 |          1 |
+| US#5  | En tant que développeur je souhaite repérer et accéder partout sur le site aux projets auxquels je suis associé et à ceux auxquels je ne le suis pas.           |           3 |          5 |
+|-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------+------------|
+|       | *projet*                                                                                                                                                        |             |            |
+| US#6  | En tant que visiteur/développeur je souhaite visualiser la fiche récapitulative d’un projet.                                                                    |           2 |          1 |
+| US#7  | En tant que développeur je souhaite ajouter/éditer/supprimer mes projets.                                                                                       |           8 |          1 |
+| US#8  | En tant que développeur je souhaite sélectionner/retirer des développeurs à mes projets (via leur identifiant) et identifier un ScrumMaster et un ProductOwner. |           5 |          1 |
+|-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------+------------|
+|       | *backlog*                                                                                                                                                       |             |            |
+| US#9  | En tant que visiteur/développeur je souhaite visualiser le backlog d’un projet.                                                                                 |           2 |          2 |
+| US#10 | En tant que développeur je souhaite ajouter/éditer/supprimer une US d'un sprint d'un projet auquel je suis associé.                                             |           8 |          2 |
+| US#11 | En tant que ProductOwner je souhaite modifier la priorité des US.                                                                                               |           1 |          2 |
+|-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------+------------|
+|       | *sprints*                                                                                                                                                       |             |            |
+| US#12 | En tant que visiteur/développeur je souhaite avoir une vue générale des sprints d’un projet et une vue spécifique sur un sprint.                                |           3 |          3 |
+| US#13 | En tant que développeur je souhaite ajouter/éditer/supprimer un sprint dans un projet auquel je suis associé.                                                   |           8 |          3 |
+| US#14 | En tant que développeur je souhaite sélectionner/retirer une US du backlog dans l’édition des sprints d'un projet auquel je suis associé.                       |           3 |          3 |
+|-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------+------------|
+|       | *kanban*                                                                                                                                                        |             |            |
+| US#15 | En tant que visiteur/développeur je souhaite visualiser le kanban d’un sprint d’un projet.                                                                      |           5 |          3 |
+| US#16 | En tant que développeur je souhaite ajouter/modifier/supprimer une tâche d'une US d'un projet auquel je suis associé.                                           |           8 |          3 |
+|-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------+------------|
+|       | *traçabilité*                                                                                                                                                   |             |            |
+| US#17 | En tant que visiteur/développeur je souhaite visualiser la traçabilité d’un projet.                                                                             |           2 |          4 |
+| US#18 | En tant que développeur je souhaite ajouter le commit et la date d’une US d'un projet auquel je suis associé.                                                   |           3 |          4 |
+|-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------+------------|
+|       | *avancement*                                                                                                                                                    |             |            |
+| US#19 | En tant que visiteur/développeur je souhaite visualiser l’avancement (burdown chart) d’un projet en temps réel.                                                 |           5 |          4 |
+|-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+-------------+------------|
+|       | *Somme Backlog*                                                                                                                                                 |          79 |            |
+#+TBLFM: @28$3=vsum(@3..@27)
