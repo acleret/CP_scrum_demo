@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost/tests/CdPSprintProjectDev/src/web" />
+<title>Sprint2-1-US7</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Sprint2-1-US7</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/cdp/cmmi3/CP_scrum_dev/src/web/listeProjets.php</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Inscription</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=prenom</td>
+	<td>PrenomTest</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=nom</td>
+	<td>NomTest</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=pseudo</td>
+	<td>PseudoTest</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=mdp</td>
+	<td>testmdp</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=repetemdp</td>
+	<td>testmdp</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=mail</td>
+	<td>adresse@test</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=repetemail</td>
+	<td>adresse@test</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>name=url</td>
+	<td>https://www.centraltest.com/sites/all/files/bf5_0.png</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=input.btn.btn-primary</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=DevPseudo</td>
+	<td>PseudoTest</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=DevMDP</td>
+	<td>testmdp</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=input.btn.btn-primary</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@value='Ajouter un projet']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=nom</td>
+	<td>Projet test sprint 2</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=client</td>
+	<td>Client test</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=comment</td>
+	<td>Description du test pour le sprint 2</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=changerPO</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=div.checkbox &gt; label</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=changerSM</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[6]/label</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=SM</td>
+	<td>label=devpseudo01</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=choisirDevs</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[8]/label</td>
+	<td></td>
+</tr>
+<tr>
+	<td>addSelection</td>
+	<td>name=devs[]</td>
+	<td>label=devpseudo01</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=input.btn.btn-primary</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=input.btn.btn-default</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=choisirDevs</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[8]/label</td>
+	<td></td>
+</tr>
+<tr>
+	<td>addSelection</td>
+	<td>name=devs[]</td>
+	<td>label=devpseudo02</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=changerSM</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[6]/label</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=SM</td>
+	<td>label=PseudoTest</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=comment</td>
+	<td>Test pour le sprint 2</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=input.btn.btn-primary</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=th.sorting_asc</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=button.btn.btn-danger</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=input.btn.btn-danger</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=th.sorting_asc</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=th.sorting_desc</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

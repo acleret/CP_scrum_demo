@@ -9,7 +9,7 @@ if (isset($_SESSION["session"])) {
 		$description = "";
 		$idPO = "";
 		$idSM = "";
-				
+
 		if ($_POST["action"] == "ajouter") {
 			$s->suppressionCookies();
 		  $s->head("Page projet - Création");
@@ -49,7 +49,7 @@ if (isset($_SESSION["session"])) {
 <?php 	} ?>
 				</h2>
 				<hr>
-				
+
 <?php 	if ($_POST["action"] == "ajouter") { ?>
 				<form class="form-horizontal" action="modificationProjet.php?action=ajouter" method="post">
 <?php   } else if ($_POST["action"] == "éditer") { ?>
@@ -76,10 +76,10 @@ if (isset($_SESSION["session"])) {
 					</div>
 					<div class="checkbox">
 						<label>
-							<input type="checkbox" id="changerPO" onclick="changeVisibilite()"> 
-<?php 				if ($_POST["action"] == "ajouter") {  
+							<input type="checkbox" id="changerPO" onclick="changeVisibilite()">
+<?php 				if ($_POST["action"] == "ajouter") {
 								echo "Ajouter un product owner</label>";
-							} else if ($_POST["action"] == "éditer") {  
+							} else if ($_POST["action"] == "éditer") {
 								echo "Changer de product owner</label><br>\n
 								(Actuellement, c'est : ".$nomPO.")";
 							}
@@ -88,18 +88,18 @@ if (isset($_SESSION["session"])) {
 					<div class="form-group" id="nouveauPO" style="display:none;">
 						<div class="col-md-offset-0 col-md-8">
 							<select class="form-control" name="PO">
-<?php 					$listeDeveloppeurs = $db->listeDeveloppeurs(); 
-								while ($row_dev = $listeDeveloppeurs->fetch_assoc()) {							
+<?php 					$listeDeveloppeurs = $db->listeDeveloppeurs();
+								while ($row_dev = $listeDeveloppeurs->fetch_assoc()) {
 									if ($_POST["action"] == "ajouter") {
 										if($row_dev["DEV_id"] == $_SESSION["id_co"]) {
-?>						
+?>
 											<option selected value="<?php echo $_SESSION["id_co"]; ?>"><?php echo $_SESSION["pseudo_co"]; ?></option>
 <?php								} else { ?>
 											<option value="<?php echo $row_dev["DEV_id"]; ?>"><?php echo $row_dev["DEV_pseudo"]; ?></option>
 <?php 							}
 									} else if ($_POST["action"] == "éditer") {
 										if($row_dev["DEV_id"] == $idPO) {
-?>						
+?>
 											<option selected value="<?php echo $idPO; ?>"><?php echo $nomPO; ?></option>
 <?php								} else { ?>
 											<option value="<?php echo $row_dev["DEV_id"]; ?>"><?php echo $row_dev["DEV_pseudo"]; ?></option>
@@ -115,10 +115,10 @@ if (isset($_SESSION["session"])) {
 					<br>
 					<div class="checkbox">
 						<label>
-							<input type="checkbox" id="changerSM" onclick="changeVisibilite()"> 
-<?php 				if ($_POST["action"] == "ajouter") {  
+							<input type="checkbox" id="changerSM" onclick="changeVisibilite()">
+<?php 				if ($_POST["action"] == "ajouter") {
 								echo "Ajouter un scrum master</label>";
-							} else if ($_POST["action"] == "éditer") {  
+							} else if ($_POST["action"] == "éditer") {
 								echo "Changer de scrum master</label><br>\n
 								(Actuellement, c'est : ".$nomSM.")";
 							}
@@ -127,18 +127,18 @@ if (isset($_SESSION["session"])) {
 					<div class="form-group" id="nouveauSM" style="display:none;">
 						<div class="col-md-offset-0 col-md-8">
 							<select class="form-control" name="SM">
-<?php 					$listeDeveloppeurs = $db->listeDeveloppeurs(); 
-								while ($row_dev = $listeDeveloppeurs->fetch_assoc()) {					
+<?php 					$listeDeveloppeurs = $db->listeDeveloppeurs();
+								while ($row_dev = $listeDeveloppeurs->fetch_assoc()) {
 									if ($_POST["action"] == "ajouter") {
 										if($row_dev["DEV_id"] == $_SESSION["id_co"]) {
-?>						
+?>
 											<option selected value="<?php echo $_SESSION["id_co"]; ?>"><?php echo $_SESSION["pseudo_co"]; ?></option>
 <?php								} else { ?>
 											<option value="<?php echo $row_dev["DEV_id"]; ?>"><?php echo $row_dev["DEV_pseudo"]; ?></option>
 <?php 							}
 									} else if ($_POST["action"] == "éditer") {
 										if($row_dev["DEV_id"] == $idSM) {
-?>						
+?>
 											<option selected value="<?php echo $idSM; ?>"><?php echo $nomSM; ?></option>
 <?php								} else { ?>
 											<option value="<?php echo $row_dev["DEV_id"]; ?>"><?php echo $row_dev["DEV_pseudo"]; ?></option>
@@ -154,10 +154,10 @@ if (isset($_SESSION["session"])) {
 					<br>
 					<div class="checkbox">
 						<label>
-							<input type="checkbox" id="choisirDevs" onclick="changeVisibilite()"> 
-<?php 				if ($_POST["action"] == "ajouter") {  
+							<input type="checkbox" id="choisirDevs" onclick="changeVisibilite()">
+<?php 				if ($_POST["action"] == "ajouter") {
 								echo "Associer des développeurs</label>";
-							} else if ($_POST["action"] == "éditer") {  
+							} else if ($_POST["action"] == "éditer") {
 								echo "Ajouter/Retirer des développeurs</label><br>\n
 								(Actuellement, il y a : ";
 								if (isset($_POST["idProjet"])) {
@@ -173,23 +173,23 @@ if (isset($_SESSION["session"])) {
 					<div class="form-group" id="mesDevs" style="display:none;">
 						<div class="col-md-offset-0 col-md-8">
 							<select multiple class="form-control" name="devs[]" size="6">
-<?php 					$listeDeveloppeurs = $db->listeDeveloppeurs(); 
+<?php 					$listeDeveloppeurs = $db->listeDeveloppeurs();
 								while ($row_dev = $listeDeveloppeurs->fetch_assoc()) {
 									if ($_POST["action"] == "ajouter") {
 										if($row_dev["DEV_id"] == $_SESSION["id_co"]) {
-?>						
+?>
 											<option selected value="<?php echo $_SESSION["id_co"]; ?>"><?php echo $_SESSION["pseudo_co"]; ?></option>
 <?php								} else { ?>
 											<option value="<?php echo $row_dev["DEV_id"]; ?>"><?php echo $row_dev["DEV_pseudo"]; ?></option>
 <?php 							}
 									} else if ($_POST["action"] == "éditer") {
-										if ($db->estDeveloppeurProjet($_COOKIE["id_projet"], $row_dev["DEV_id"])) {
-?>						
+										if ($db->estDeveloppeurProjet($_POST["idProjet"], $row_dev["DEV_id"])) {
+?>
 											<option selected value="<?php echo $row_dev["DEV_id"]; ?>"><?php echo $row_dev["DEV_pseudo"]; ?></option>
-<?php								} else { ?>				
+<?php								} else { ?>
 											<option value="<?php echo $row_dev["DEV_id"]; ?>"><?php echo $row_dev["DEV_pseudo"]; ?></option>
 <?php								}
-									}	else { ?>						
+									}	else { ?>
 										<option value="<?php echo $row_dev["DEV_id"]; ?>"><?php echo $row_dev["DEV_pseudo"]; ?></option>
 <?php							}
 								}
@@ -200,17 +200,16 @@ if (isset($_SESSION["session"])) {
 					<br><br>
 					<p class="information" style="font-style: italic;">
                                 <span style="text-decoration: underline">NB :</span>
-                                Surtout, pas d'inquiétudes ! Si vous ne savez pas encore qui affecter à un (ou aux 3) poste(s), ne sélectionnez personne. <br> 
+                                Surtout, pas d'inquiétudes ! Si vous ne savez pas encore qui affecter à un (ou aux 3) poste(s), ne sélectionnez personne. <br>
                                 &emsp;&emsp;&nbsp;Par défaut, nous vous attribuons ce(s) poste(s). <br>
                                 &emsp;&emsp;&nbsp;Évidemment, vous pourrez modifier ces informations dans la page d'édition de ce nouveau projet.</p>
 					<br>
 					<div class="form-group">
 						<div class="col-md-offset-0 col-md-8">
 <?php 			// depuis le bouton "Modifier" de listeProjets.php
-						if (isset($_POST["idProjet"]) && isset($_POST["pageActuelle"])) { 
-?>												
+						if (isset($_POST["idProjet"])) {
+?>
 							<input type="hidden" name="idProjet" value="<?php echo $_POST["idProjet"]; ?>"/>
-							<input type="hidden" name="pageActuelle" value="<?php echo $_POST["pageActuelle"]; ?>"/>
 <?php 			} ?>
 							<input class="btn btn-primary" type="submit" value="Valider">
 						</div>
@@ -218,10 +217,10 @@ if (isset($_SESSION["session"])) {
 				</form>
 			</div>
 		</article>
-		
+
    <script>
        jQuery(document).ready(function(){ });
-			 
+
 			 function changeVisibilite() {
 				if($('#changerPO').is(':checked')) {
 					$('#nouveauPO').css({'display':'block'});

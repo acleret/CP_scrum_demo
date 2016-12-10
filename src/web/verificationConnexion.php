@@ -17,7 +17,12 @@ if($result->num_rows == 1) {
   $_SESSION["nom_co"] = $donnees["DEV_nom"];
   $_SESSION["prenom_co"] = $donnees["DEV_prenom"];
 	$_SESSION["mdp_co"] = $donnees["DEV_mdp"];
-	
+  if (isset($_POST["resterConnecte"])) {
+    $_SESSION["expire"] = time() + (60 * 60 * 24 * 365); // 1 an plus tard;
+  } else {
+    $_SESSION["expire"] = time() + (30 * 60); // 30 mn plus tard
+  }
+
   header("Location: ../web/index.php");
   exit();
 } else {

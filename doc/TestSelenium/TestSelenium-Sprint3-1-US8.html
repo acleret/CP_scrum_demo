@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost/tests/CdPSprintProjectDev/src/web" />
+<title>Sprint3-1-US8</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Sprint3-1-US8</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/cdp/cmmi3/CP_scrum_dev/src/web/listeProjets.php</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Connexion</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=DevPseudo</td>
+	<td>devpseudo01</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=DevMDP</td>
+	<td>devmdp01</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=input.btn.btn-primary</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//input[@value='Modifier'])[3]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=changerPO</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=div.checkbox &gt; label</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=PO</td>
+	<td>label=devpseudo03</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=changerSM</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[6]/label</td>
+	<td></td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>name=SM</td>
+	<td>label=devpseudo03</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=choisirDevs</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//div[8]/label</td>
+	<td></td>
+</tr>
+<tr>
+	<td>removeSelection</td>
+	<td>name=devs[]</td>
+	<td>label=devpseudo02</td>
+</tr>
+<tr>
+	<td>addSelection</td>
+	<td>name=devs[]</td>
+	<td>label=devpseudo03</td>
+</tr>
+<tr>
+	<td>addSelection</td>
+	<td>name=devs[]</td>
+	<td>label=devpseudo04</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=input.btn.btn-primary</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=projet003</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

@@ -2,7 +2,6 @@
 require_once("../web/config.php");
 
 if (!isset($_SESSION["session"])) {
-  $_SESSION["expire"] = time() + (30 * 60); // 30 mn plus tard
   $s->suppressionCookies();
   $s->head("Connexion");
   $s->header($db);
@@ -27,11 +26,15 @@ if (!isset($_SESSION["session"])) {
 ?>
               <form action="../web/verificationConnexion.php" class="form-horizontal" method="post" accept-charset="utf-8">
                 <div <?php if($erreurKO) echo 'class="form-group has-error"'; else echo 'class="form-group"'; ?>>
-                  <div class="col-md-8"><input name="identifiant" placeholder="Identifiant" class="form-control" type="text" id="DevPseudo" required /></div>
+                  <div class="col-md-8"><input name="identifiant" placeholder="Identifiant" class="form-control" type="text" id="DevPseudo" required autofocus/></div>
                 </div>
                 <div <?php if($erreurKO) echo 'class="form-group has-error"'; else echo 'class="form-group"'; ?>>
                   <div class="col-md-8"><input name="motDePasse" placeholder="Mot de passe" class="form-control" type="password" id="DevMDP" required /></div>
                 </div>
+                <div class="checkbox">
+                  <label><input type="checkbox" name="resterConnecte" value="1" />Rester connecté</label>
+                </div>
+                <br />
                 <div class="form-group">
                   <div class="col-md-offset-0 col-md-8"><input class="btn btn-primary" type="submit" value="Se connecter"/></div>
                 </div>

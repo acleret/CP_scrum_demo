@@ -23,7 +23,7 @@ if (isset($_COOKIE["id_projet"])) {
           <script>
             $(document).ready(function() {
               $('#tableUS').DataTable( {
-                "order": [[ 4, "asc" ]],
+                "order": [[ 0, "asc" ]],
                 "oLanguage": {
                   "sLengthMenu": "Afficher _MENU_ entrées",
                   "sSearch": "<span class=\"glyphicon glyphicon-search\"></span> Recherche:",
@@ -41,6 +41,19 @@ if (isset($_COOKIE["id_projet"])) {
           <article>
             <div class="col-sm-8 text-left">
               <h2><?php echo $row_pro["PRO_nom"];?> - Backlog</h2>
+              <hr>
+              <dl class="dl-horizontal">
+                <dt>Chiffrage total</dt>
+                <dd>
+<?php
+  $cout_backlog = $db->sommeChiffrageBacklog($id_pro);
+  if (empty($cout_backlog))
+    echo "-\n";
+  else
+    echo $cout_backlog."\n";
+?>
+                </dd>
+              </dl>
               <hr>
 <?php
   if (isset($_GET["modif"])) {
@@ -66,7 +79,7 @@ if (isset($_COOKIE["id_projet"])) {
 ?>
               <div class="alert alert-success alert-dismissible">
                 <a href="" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <strong>OK!</strong> User story modifié.
+                <strong>OK!</strong> User story modifiée.
               </div>
 <?php
     }
@@ -94,7 +107,7 @@ if (isset($_COOKIE["id_projet"])) {
 ?>
               <div class="alert alert-success alert-dismissible">
                 <a href="" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <strong>OK!</strong> User story supprimé.
+                <strong>OK!</strong> User story supprimée.
               </div>
 <?php
     }
@@ -114,7 +127,7 @@ if (isset($_COOKIE["id_projet"])) {
 ?>
               <div class="alert alert-success alert-dismissible">
                 <a href="" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <strong>OK!</strong> User story ajouté.
+                <strong>OK!</strong> User story ajoutée.
               </div>
 <?php
     }
@@ -123,6 +136,7 @@ if (isset($_COOKIE["id_projet"])) {
               <table id="tableUS" class="table table-striped table-hover">
                 <thead>
                   <tr>
+                    <th>Numéro</th>
                     <th>Nom</th>
                     <th>Chiffrage</th>
                     <th>Priorité</th>
@@ -146,10 +160,11 @@ if (isset($_COOKIE["id_projet"])) {
   while ($row = $result->fetch_assoc()) {
 ?>
                   <tr>
+                    <td><?php echo ($row["US_numero"] < 10) ?  'US#0'.$row["US_numero"] : 'US#'.$row["US_numero"]; ?></td>
                     <td><?php echo $row["US_nom"]; ?></td>
                     <td><?php echo $row["US_chiffrageAbstrait"]; ?></td>
                     <td><?php echo $row["US_priorite"]; ?></td>
-                    <td><?php echo $db->numeroSprint($row["SPR_id"]); ?></td>
+                    <td><?php echo (empty($db->numeroSprint($row["SPR_id"]))) ? "" : (($db->numeroSprint($row["SPR_id"]) < 10) ?  'Sprint#0'.$db->numeroSprint($row["SPR_id"]) : 'Sprint#'.$db->numeroSprint($row["SPR_id"])); ?></td>
                     <td><?php echo $row["US_dateCreation"]; ?></td>
 <?php
     if (isset($_SESSION["session"])) {
@@ -167,9 +182,13 @@ if (isset($_COOKIE["id_projet"])) {
                           <form style="display: inline;" action="../web/modificationUserStory.php" method="post">
                             <div class="modal-header">
                               <button type="button" class="close" data-dismiss="modal">&times;</button>
-                              <h4 class="modal-title">Modification d'une User Story</h4>
+                              <h4 class="modal-title">Modifier une User Story</h4>
                             </div>
                             <div class="modal-body">
+                              <div class="form-group">
+                                <label for="numInput">Numéro US</label>
+                                <input class="form-control" id="numInput" type="number" name="numero_us" placeholder="Numéro US" value="<?php echo $row["US_numero"];?>"/>
+                              </div>
                               <div class="form-group">
                                 <label for="nomInput">Nom</label>
                                 <input type="text" class="form-control" id="nomInput" placeholder="En tant que... je souhaite..." name="nom_us" value="<?php echo $row["US_nom"]; ?>" required>
@@ -266,7 +285,7 @@ if (isset($_COOKIE["id_projet"])) {
     if ($db->estMembreProjet($id_pro, $_SESSION["id_co"])) {
 ?>
             <div class="col-sm-2 sidenav">
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ajoutModal">Ajouter</button>
+              <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#ajoutModal">Ajouter une US</button>
             </div>
             <!-- Modal Ajout -->
             <div id="ajoutModal" class="modal fade" role="dialog" style="text-align: left">
@@ -276,9 +295,13 @@ if (isset($_COOKIE["id_projet"])) {
                   <form style="display: inline;" action="../web/ajoutUserStory.php" method="post">
                     <div class="modal-header">
                       <button type="button" class="close" data-dismiss="modal">&times;</button>
-                      <h4 class="modal-title">Ajout d'une User Story</h4>
+                      <h4 class="modal-title">Ajouter une User Story</h4>
                     </div>
                     <div class="modal-body">
+                      <div class="form-group">
+                        <label for="numeroInput">Numéro US</label>
+                        <input type="number" class="form-control" id="numeroInput" placeholder="Numéro US" name="numero_us" required>
+                      </div>
                       <div class="form-group">
                         <label for="nomInput">Nom</label>
                         <input type="text" class="form-control" id="nomInput" placeholder="En tant que... je souhaite..." name="nom_us" required>

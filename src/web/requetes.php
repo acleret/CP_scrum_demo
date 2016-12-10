@@ -3,6 +3,7 @@ class Requetes {
 
   private $conn;
 
+
   /******************************************************/
   /** Fonctions pour la connexion à la Base de Données **/
   /******************************************************/
@@ -31,7 +32,7 @@ class Requetes {
     public function infosDeveloppeur($id_dev) {
         $sql = "SELECT * FROM developpeur WHERE DEV_id = ".$id_dev.";";
         if (!$result = $this->conn->query($sql)) {
-            printf("<b style=\"color:red;\">Message d'erreur: %s</b><br>\n", $this->conn->error);
+            printf("<b style=\"color:red;\">Message d'erreur dans infosDeveloppeur(): %s</b><br>\n", $this->conn->error);
             return NULL;
         }
         return $result;
@@ -41,9 +42,9 @@ class Requetes {
     // car comme les id, les pseudo sont uniques
     public function idDeveloppeur($pseudo_dev) {
         $sql = "SELECT DEV_id FROM developpeur
-                WHERE DEV_pseudo = ".$pseudo_dev.";";
+                WHERE DEV_pseudo = '".$pseudo_dev."';";
         if (!$result = $this->conn->query($sql)) {
-            printf("<b style=\"color:red;\">Message d'erreur: %s</b><br>\n", $this->conn->error);
+            printf("<b style=\"color:red;\">Message d'erreur dans idDeveloppeur(): %s</b><br>\n", $this->conn->error);
             return NULL;
         }
         return $result;
@@ -54,7 +55,7 @@ class Requetes {
         $sql = "SELECT D.* FROM developpeur as D
                 ORDER BY D.DEV_pseudo ASC;";
         if (!$result = $this->conn->query($sql)) {
-            printf("<b style=\"color:red;\">Message d'erreur: %s</b><br>\n", $this->conn->error);
+            printf("<b style=\"color:red;\">Message d'erreur dans listeDeveloppeurs(): %s</b><br>\n", $this->conn->error);
             return NULL;
         }
         return $result;
@@ -69,7 +70,7 @@ class Requetes {
         $sql = "INSERT INTO developpeur (DEV_prenom, DEV_nom, DEV_pseudo, DEV_mdp, DEV_mail, DEV_urlAvatar, DEV_dateCreation)
                 VALUES ('".$prenom."', '".$nom."', '".$pseudo."', '".$mdp."', '".$mail."', '".$url_avatar."', Now());";
         if (!$result = $this->conn->query($sql)) {
-            printf("<b style=\"color:red;\">Message d'erreur: %s</b><br>\n", $this->conn->error);
+            printf("<b style=\"color:red;\">Message d'erreur dans ajoutNouveauDeveloppeur(): %s</b><br>\n", $this->conn->error);
             return NULL;
         }
         return true;
@@ -79,7 +80,7 @@ class Requetes {
     public function testPseudoDeveloppeur($pseudo) {
         $sql = "SELECT * FROM developpeur WHERE DEV_pseudo = '".$pseudo."';";
         if (!$result = $this->conn->query($sql)) {
-            printf("<b style=\"color:red;\">Message d'erreur: %s</b><br>\n", $this->conn->error);
+            printf("<b style=\"color:red;\">Message d'erreur dans testPseudoDeveloppeur(): %s</b><br>\n", $this->conn->error);
             return NULL;
         }
         $row = $result->fetch_assoc();
@@ -93,7 +94,7 @@ class Requetes {
     public function testMailDeveloppeur($mail) {
         $sql = "SELECT * FROM developpeur WHERE DEV_mail = '".$mail."';";
         if (!$result = $this->conn->query($sql)) {
-            printf("<b style=\"color:red;\">Message d'erreur: %s</b><br>\n", $this->conn->error);
+            printf("<b style=\"color:red;\">Message d'erreur dans testMailDeveloppeur(): %s</b><br>\n", $this->conn->error);
             return NULL;
         }
         $row = $result->fetch_assoc();
@@ -110,7 +111,7 @@ class Requetes {
                 SET DEV_prenom='".$prenom."',DEV_nom='".$nom."',DEV_pseudo='".$pseudo."', DEV_urlAvatar='".$url_avatar."'
                 WHERE DEV_id=".$id.";";
         if (!$result = $this->conn->query($sql)) {
-            printf("<b style=\"color:red;\">Message d'erreur: %s</b><br>\n", $this->conn->error);
+            printf("<b style=\"color:red;\">Message d'erreur dans modifDeveloppeur(): %s</b><br>\n", $this->conn->error);
             return NULL;
         }
         return true;
@@ -122,7 +123,7 @@ class Requetes {
               SET DEV_mdp='$nouveauMotDePasse'
               WHERE DEV_id='$id'";
         if (!$result = $this->conn->query($sql)) {
-            printf("<b style=\"color:red;\">Message d'erreur: %s</b><br>\n", $this->conn->error);
+            printf("<b style=\"color:red;\">Message d'erreur dans modifDeveloppeurMDP(): %s</b><br>\n", $this->conn->error);
             return NULL;
         }
         return true;
@@ -140,15 +141,15 @@ class Requetes {
         /* TODO : Que faire quand il est le ScrumMaster */
         /* TODO : Que faire quand il est le responsable d'une tâche */
         if (!$result = $this->conn->query($sql1)) {
-            printf("<b style=\"color:red;\">Message d'erreur: %s</b><br>\n", $this->conn->error);
+            printf("<b style=\"color:red;\">Message d'erreur dans supprDeveloppeur().1: %s</b><br>\n", $this->conn->error);
             return NULL;
         } else {
             if (!$result = $this->conn->query($sql2)) {
-                printf("<b style=\"color:red;\">Message d'erreur: %s</b><br>\n", $this->conn->error);
+                printf("<b style=\"color:red;\">Message d'erreur dans supprDeveloppeur().2: %s</b><br>\n", $this->conn->error);
                 return NULL;
             } else {
                 if (!$result = $this->conn->query($sql3)) {
-                    printf("<b style=\"color:red;\">Message d'erreur: %s</b><br>\n", $this->conn->error);
+                    printf("<b style=\"color:red;\">Message d'erreur dans supprDeveloppeur().3: %s</b><br>\n", $this->conn->error);
                     return NULL;
                 }
             }
@@ -169,7 +170,7 @@ class Requetes {
         $sql = "SELECT * FROM inter_dev_projet
                 WHERE PRO_id = ".$id_projet." AND DEV_id = ".$id_dev.";";
         if (!$result = $this->conn->query($sql)) {
-            printf("<b style=\"color:red;\">Message d'erreur: %s</b><br>\n", $this->conn->error);
+            printf("<b style=\"color:red;\">Message d'erreur dans estDeveloppeurProjet(): %s</b><br>\n", $this->conn->error);
             return NULL;
         }
         $row = $result->fetch_assoc();
@@ -184,7 +185,7 @@ class Requetes {
         $sql = "SELECT * FROM projet
                 WHERE PRO_id=".$id_pro." AND DEV_idScrumMaster=".$id_dev.";";
         if (!$result = $this->conn->query($sql)) {
-            printf("<b style=\"color:red;\">Message d'erreur: %s</b><br>\n", $this->conn->error);
+            printf("<b style=\"color:red;\">Message d'erreur dans estScrumMaster(): %s</b><br>\n", $this->conn->error);
             return NULL;
         }
         if ($result->num_rows == 1)
@@ -198,7 +199,7 @@ class Requetes {
       $sql = "SELECT * FROM projet
               WHERE PRO_id=".$id_pro." AND DEV_idProductOwner=".$id_dev.";";
       if (!$result = $this->conn->query($sql)) {
-          printf("<b style=\"color:red;\">Message d'erreur: %s</b><br>\n", $this->conn->error);
+          printf("<b style=\"color:red;\">Message d'erreur dans estProductOwner(): %s</b><br>\n", $this->conn->error);
           return NULL;
       }
       if ($result->num_rows == 1)
@@ -211,7 +212,7 @@ class Requetes {
     public function testIDDeveloppeur($id_dev) {
         $sql = "SELECT * FROM developpeur WHERE DEV_id = ".$id_dev.";";
         if (!$result = $this->conn->query($sql)) {
-            printf("<b style=\"color:red;\">Message d'erreur: %s</b><br>\n", $this->conn->error);
+            printf("<b style=\"color:red;\">Message d'erreur dans testIDDeveloppeur(): %s</b><br>\n", $this->conn->error);
             return NULL;
         }
         $row = $result->fetch_assoc();
@@ -228,7 +229,7 @@ class Requetes {
                 WHERE IDP.DEV_id = ".$id_dev." AND DEV_idProductOwner = ".$id_dev."
                 ORDER BY PRO_dateCreation ASC;";
         if (!$result = $this->conn->query($sql)) {
-            printf("<b style=\"color:red;\">Message d'erreur: %s</b><br>\n", $this->conn->error);
+            printf("<b style=\"color:red;\">Message d'erreur dans listeProjetsDeveloppeurProductOwner(): %s</b><br>\n", $this->conn->error);
             return NULL;
         }
         return $result;
@@ -241,7 +242,7 @@ class Requetes {
                 WHERE IDP.DEV_id = ".$id_dev."
                 ORDER BY P.PRO_dateCreation ASC;";
         if (!$result = $this->conn->query($sql)) {
-            printf("<b style=\"color:red;\">Message d'erreur: %s</b><br>\n", $this->conn->error);
+            printf("<b style=\"color:red;\">Message d'erreur dans listeProjetsDeveloppeur(): %s</b><br>\n", $this->conn->error);
             return NULL;
         }
         return $result;
@@ -253,7 +254,7 @@ class Requetes {
                 INNER JOIN inter_dev_projet AS IDP ON P.PRO_id = IDP.PRO_id
                 WHERE IDP.DEV_id = ".$id_dev.";";
         if (!$result = $this->conn->query($sql)) {
-            printf("<b style=\"color:red;\">Message d'erreur: %s</b><br>\n", $this->conn->error);
+            printf("<b style=\"color:red;\">Message d'erreur dans nombreProjetsDeveloppeur(): %s</b><br>\n", $this->conn->error);
             return NULL;
         }
         return $result->num_rows;
@@ -264,7 +265,7 @@ class Requetes {
         $sql = "SELECT * FROM developpeur
                 WHERE DEV_pseudo='".$pseudo."' AND DEV_mdp='".$mdp."';";
         if (!$result = $this->conn->query($sql)) {
-            printf("<b style=\"color:red;\">Message d'erreur: %s</b><br>\n", $this->conn->error);
+            printf("<b style=\"color:red;\">Message d'erreur dans testDeveloppeurConnexion(): %s</b><br>\n", $this->conn->error);
             return NULL;
         }
         return $result;
@@ -274,7 +275,7 @@ class Requetes {
     public function maxIDDeveloppeur() {
         $sql = "SELECT MAX(DEV_id) FROM developpeur;";
         if (!$res = $this->conn->query($sql)) {
-            printf("<b style=\"color:red;\">Message d'erreur: %s</b><br>\n", $this->conn->error);
+            printf("<b style=\"color:red;\">Message d'erreur dans maxIDDeveloppeur(): %s</b><br>\n", $this->conn->error);
             return NULL;
         }
         $row = $res->fetch_assoc();
@@ -286,7 +287,7 @@ class Requetes {
         $sql = "SELECT DEV_pseudo FROM developpeur
 								WHERE DEV_id ='".$id_dev."';";
         if (!$result = $this->conn->query($sql)) {
-            printf("<b style=\"color:red;\">Message d'erreur: %s</b><br>\n", $this->conn->error);
+            printf("<b style=\"color:red;\">Message d'erreur dans pseudoDeveloppeur(): %s</b><br>\n", $this->conn->error);
             return NULL;
         }
         return $result;
@@ -301,7 +302,7 @@ class Requetes {
     public function infosProjet($id_pro) {
         $sql = "SELECT * FROM projet WHERE PRO_id = ".$id_pro.";";
         if (!$result = $this->conn->query($sql)) {
-            printf("<b style=\"color:red;\">Message d'erreur: %s</b><br>\n", $this->conn->error);
+            printf("<b style=\"color:red;\">Message d'erreur dans infosProjet(): %s</b><br>\n", $this->conn->error);
             return NULL;
         }
         return $result;
@@ -314,7 +315,7 @@ class Requetes {
                 ORDER BY PRO_dateCreation ASC
                 LIMIT ".$id_premiere_ligne.", ".$nb_projets_par_pages.";";
         if (!$result = $this->conn->query($sql)) {
-            printf("<b style=\"color:red;\">Message d'erreur: %s</b><br>\n", $this->conn->error);
+            printf("<b style=\"color:red;\">Message d'erreur dans listeProjets(): %s</b><br>\n", $this->conn->error);
             return NULL;
         }
         return $result;
@@ -324,7 +325,7 @@ class Requetes {
     public function nombreProjets() {
         $sql = "SELECT * FROM projet";
         if (!$result = $this->conn->query($sql)) {
-            printf("<b style=\"color:red;\">Message d'erreur: %s</b><br>\n", $this->conn->error);
+            printf("<b style=\"color:red;\">Message d'erreur dans nombreProjets(): %s</b><br>\n", $this->conn->error);
             return NULL;
         }
         return $result->num_rows;
@@ -349,7 +350,7 @@ class Requetes {
 							$sql = "INSERT INTO inter_dev_projet (DEV_id, PRO_id)
 											VALUES ('".$valeur_idDev."', '".$idProjet."');";
 							if (!$result = $this->conn->query($sql)) {
-								printf("<b style=\"color:red;\">Message d'erreur: %s</b><br>\n", $this->conn->error);
+								printf("<b style=\"color:red;\">Message d'erreur dans ajouterProjetBDD(): %s</b><br>\n", $this->conn->error);
 								return NULL;
 							}
 						}
@@ -365,7 +366,7 @@ class Requetes {
         $sql = "INSERT INTO projet (PRO_nom, PRO_client, PRO_description, 		PRO_dateCreation, DEV_idProductOwner, DEV_idScrumMaster)
                 VALUES ('".$nom."', '".$client."', '".$description."', Now(), '".$idPO."', '".$idSM."');";
         if (!$result = $this->conn->query($sql)) {
-            printf("<b style=\"color:red;\">Message d'erreur: %s</b><br>\n", $this->conn->error);
+            printf("<b style=\"color:red;\">Message d'erreur dans ajoutNouveauProjet(): %s</b><br>\n", $this->conn->error);
             return NULL;
         }
         return $this->conn->insert_id;
@@ -396,7 +397,7 @@ class Requetes {
 							$sql = "INSERT INTO inter_dev_projet (DEV_id, PRO_id)
 											VALUES ('".$valeur_idDev."', '".$arg_list[0]."');";
 							if (!$result = $this->conn->query($sql)) {
-								printf("<b style=\"color:red;\">Message d'erreur: %s</b><br>\n", $this->conn->error);
+								printf("<b style=\"color:red;\">Message d'erreur dans modifierProjetBDD(): %s</b><br>\n", $this->conn->error);
 								return NULL;
 							}
 					}
@@ -412,7 +413,7 @@ class Requetes {
                 SET PRO_nom='".$nom."', PRO_client='".$client."', PRO_description='".$description."', DEV_idProductOwner='".$idPO."', DEV_idScrumMaster='".$idSM."'
                 WHERE PRO_id=".$id_pro.";";
         if (!$result = $this->conn->query($sql)) {
-            printf("<b style=\"color:red;\">Message d'erreur: %s</b><br>\n", $this->conn->error);
+            printf("<b style=\"color:red;\">Message d'erreur dans modifProjet(): %s</b><br>\n", $this->conn->error);
             return NULL;
         }
         return true;
@@ -431,14 +432,14 @@ class Requetes {
 					while ($row_us = $liste_idUS->fetch_assoc()) {
 						$liste_idTaches = $this->listeTachesUS($row_us["US_id"]);
 						while ($row_tache = $liste_idTaches->fetch_assoc()) {
-							if(!$this->suppressionTache($row_tache["Tache_id"]))
+							if(!$this->suppressionTache($row_tache["TAC_id"]))
 								return false;
 						}
 						if(!$this->suppressionUserStory($row_us["US_id"]))
 								return false;
 					}
 
-					$liste_idUS_out = $this->listeUserStoryOutOfSprint($row_sprint["SPR_id"], $idPro);
+					$liste_idUS_out = $this->listeUserStoryOutOfSprints($idPro);
 					while ($row_us_out = $liste_idUS_out->fetch_assoc()) {
 						$liste_idTaches_out = $this->listeTachesUS($row_us_out["US_id"]);
 						while ($row_tache_out = $liste_idTaches_out->fetch_assoc()) {
@@ -471,7 +472,7 @@ class Requetes {
 				$sql = "DELETE FROM inter_dev_projet
 								WHERE DEV_id=".$id_dev." AND PRO_id=".$id_pro.";";
         if (!$result = $this->conn->query($sql)) {
-          printf("<b style=\"color:red;\">Message d'erreur: %s</b><br>\n", $this->conn->error);
+          printf("<b style=\"color:red;\">Message d'erreur dans suppressionDeveloppeurProjet(): %s</b><br>\n", $this->conn->error);
           return NULL;
         }
 				return true;
@@ -482,7 +483,7 @@ class Requetes {
         $sql = "DELETE FROM projet
                 WHERE PRO_id=".$id_pro.";";
 				if (!$result = $this->conn->query($sql)) {
-					printf("<b style=\"color:red;\">Message d'erreur: %s</b><br>\n", $this->conn->error);
+					printf("<b style=\"color:red;\">Message d'erreur dans suppressionProjet(): %s</b><br>\n", $this->conn->error);
 					return NULL;
 				}
 				return true;
@@ -495,7 +496,7 @@ class Requetes {
                 WHERE IDP.PRO_id = ".$id_pro."
                 ORDER BY D.DEV_pseudo ASC;";
         if (!$result = $this->conn->query($sql)) {
-            printf("<b style=\"color:red;\">Message d'erreur: %s</b><br>\n", $this->conn->error);
+            printf("<b style=\"color:red;\">Message d'erreur dans listeDeveloppeursProjet(): %s</b><br>\n", $this->conn->error);
             return NULL;
         }
         return $result;
@@ -505,7 +506,7 @@ class Requetes {
     public function testIDProjet($id_pro) {
         $sql = "SELECT * FROM projet WHERE PRO_id = ".$id_pro.";";
         if (!$result = $this->conn->query($sql)) {
-            printf("<b style=\"color:red;\">Message d'erreur: %s</b><br>\n", $this->conn->error);
+            printf("<b style=\"color:red;\">Message d'erreur dans testIDProjet(): %s</b><br>\n", $this->conn->error);
             return NULL;
         }
         $row = $result->fetch_assoc();
@@ -519,7 +520,7 @@ class Requetes {
     public function maxIDProjet() {
         $sql = "SELECT MAX(PRO_id) FROM projet;";
         if (!$res = $this->conn->query($sql)) {
-            printf("<b style=\"color:red;\">Message d'erreur: %s</b><br>\n", $this->conn->error);
+            printf("<b style=\"color:red;\">Message d'erreur dans maxIDProjet(): %s</b><br>\n", $this->conn->error);
             return NULL;
         }
         $row = $res->fetch_assoc();
@@ -527,15 +528,15 @@ class Requetes {
     }
 
 
-	/**********************************************/
-  /** Fonctions pour la gestion des User Story **/
-  /**********************************************/
+	/************************************************/
+  /** Fonctions pour la gestion des User Stories **/
+  /************************************************/
 
     //retourne les données de l'us $id_us
     public function infosUserStory($id_us) {
         $sql = "SELECT * FROM us WHERE US_id = ".$id_us.";";
         if (!$res = $this->conn->query($sql)) {
-            printf("<b style=\"color:red;\">Message d'erreur: %s</b><br>\n", $this->conn->error);
+            printf("<b style=\"color:red;\">Message d'erreur dans infosUserStory(): %s</b><br>\n", $this->conn->error);
             return NULL;
         }
         return $res;
@@ -548,36 +549,27 @@ class Requetes {
                 ORDER BY US_id ASC
                 LIMIT ".$id_premiere_ligne.", ".$nb_projets_par_pages.";";
         if (!$result = $this->conn->query($sql)) {
-            printf("<b style=\"color:red;\">Message d'erreur: %s</b><br>\n", $this->conn->error);
+            printf("<b style=\"color:red;\">Message d'erreur dans listeUserStories(): %s</b><br>\n", $this->conn->error);
             return NULL;
         }
         return $result;
     }
 
-    // retourne les US d'un sprint
-    public function listeUserStorySprint($id_spr) {
-        $sql = "SELECT * FROM us WHERE SPR_id = ".$id_spr." ORDER BY US_priorite;";
-         if (!$result = $this->conn->query($sql)) {
-            printf("Message d'erreur: %s<br>", $this->conn->error);
-        }
-        return $result;
-    }
-
-    // retourne les US du backlog qui ne sont pas dans le sprint
-    public function listeUserStoryOutOfSprint($id_spr, $id_pro) {
+    // retourne les US du backlog qui ne sont pas dans un sprint
+    public function listeUserStoryOutOfSprints($id_pro) {
         $sql = "SELECT * FROM us WHERE (SPR_id IS NULL && PRO_id = ".$id_pro.") ORDER BY US_priorite;";
          if (!$result = $this->conn->query($sql)) {
-            printf("Message d'erreur: %s<br>", $this->conn->error);
+            printf("<b style=\"color:red;\">Message d'erreur dans listeUserStoryOutOfSprints(): %s</b><br>\n", $this->conn->error);
         }
         return $result;
     }
 
     // ajout US
-    public function ajoutUserStory($nom_us, $chiffrage, $priorite, $id_pro) {
-        $sql = "INSERT INTO us (US_nom, US_chiffrageAbstrait, US_priorite, US_dateCreation, PRO_id)
-                VALUES ('".$nom_us."', ".$chiffrage.", ".$priorite.", Now(), ".$id_pro.");";
+    public function ajoutUserStory($numero_us, $nom_us, $chiffrage, $priorite, $id_pro) {
+        $sql = "INSERT INTO us (US_numero, US_nom, US_chiffrageAbstrait, US_priorite, US_dateCreation, PRO_id)
+                VALUES (".$numero_us.", '".$nom_us."', ".$chiffrage.", ".$priorite.", Now(), ".$id_pro.");";
         if (!$result = $this->conn->query($sql)) {
-            printf("<b style=\"color:red;\">Message d'erreur: %s</b><br>\n", $this->conn->error);
+            printf("<b style=\"color:red;\">Message d'erreur dans ajoutUserStory(): %s</b><br>\n", $this->conn->error);
             return NULL;
         }
         return true;
@@ -585,24 +577,24 @@ class Requetes {
 
 
     // modif US
-    public function modifUserStory($id_us, $nom_us, $chiffrage, $id_pro) {
+    public function modifUserStory($id_us, $numero_us, $nom_us, $chiffrage) {
         $sql = "UPDATE us
-                SET US_nom = '".$nom_us."', US_chiffrageAbstrait = ".$chiffrage.", PRO_id = ".$id_pro."
+                SET US_numero = ".$numero_us.", US_nom = '".$nom_us."', US_chiffrageAbstrait = ".$chiffrage."
                 WHERE US_id = ".$id_us.";";
         if (!$result = $this->conn->query($sql)) {
-            printf("<b style=\"color:red;\">Message d'erreur: %s</b><br>\n", $this->conn->error);
+            printf("<b style=\"color:red;\">Message d'erreur dans modifUserStory(): %s</b><br>\n", $this->conn->error);
             return NULL;
         }
         return true;
     }
 
     // modif US en tant que ProductOwner
-    public function modifUserStoryProductOwner($id_us, $nom_us, $chiffrage, $priorite, $id_pro) {
+    public function modifUserStoryProductOwner($id_us, $numero_us, $nom_us, $chiffrage, $priorite) {
         $sql = "UPDATE us
-                SET US_nom = '".$nom_us."', US_chiffrageAbstrait = ".$chiffrage.", US_priorite = ".$priorite.", PRO_id = ".$id_pro."
+                SET US_numero = ".$numero_us.", US_nom = '".$nom_us."', US_chiffrageAbstrait = ".$chiffrage.", US_priorite = ".$priorite."
                 WHERE US_id = ".$id_us.";";
         if (!$result = $this->conn->query($sql)) {
-            printf("<b style=\"color:red;\">Message d'erreur: %s</b><br>\n", $this->conn->error);
+            printf("<b style=\"color:red;\">Message d'erreur dans modifUserStoryProductOwner(): %s</b><br>\n", $this->conn->error);
             return NULL;
         }
         return true;
@@ -613,7 +605,7 @@ class Requetes {
         SET US_dateDernierCommit = '".$date_commit."', US_idDernierCommit = '".$id_commit."', US_auteurDernierCommit = '".$auteur_commit."'
         WHERE US_id=".$id_us.";";
         if (!$result = $this->conn->query($sql)) {
-            printf("<b style=\"color:red;\">Message d'erreur: %s</b><br>\n", $this->conn->error);
+            printf("<b style=\"color:red;\">Message d'erreur dans modifUserStoryTracabilite(): %s</b><br>\n", $this->conn->error);
             return NULL;
         }
         return true;
@@ -625,7 +617,7 @@ class Requetes {
         SET SPR_id = ".$id_sprint."
         WHERE US_id=".$id_us.";";
         if (!$result = $this->conn->query($sql)) {
-            printf("<b style=\"color:red;\">Message d'erreur: %s</b><br>\n", $this->conn->error);
+            printf("<b style=\"color:red;\">Message d'erreur dans affecterUserStorySprint(): %s</b><br>\n", $this->conn->error);
             return NULL;
         }
         return true;
@@ -637,7 +629,7 @@ class Requetes {
         SET SPR_id = NULL
         WHERE US_id=".$id_us.";";
         if (!$result = $this->conn->query($sql)) {
-            printf("<b style=\"color:red;\">Message d'erreur: %s</b><br>\n", $this->conn->error);
+            printf("<b style=\"color:red;\">Message d'erreur dans retirerUserStorySprint(): %s</b><br>\n", $this->conn->error);
             return NULL;
         }
         return true;
@@ -648,10 +640,10 @@ class Requetes {
         $sql_us = "DELETE FROM us WHERE US_id = ".$id_us.";";
         $sql_tache = "DELETE FROM tache WHERE US_id = ".$id_us.";";
         if (!$result = $this->conn->query($sql_tache)) {
-            printf("<b style=\"color:red;\">Message d'erreur: %s</b><br>\n", $this->conn->error);
+            printf("<b style=\"color:red;\">Message d'erreur dans suppressionUserStory().1: %s</b><br>\n", $this->conn->error);
 						return NULL;
         } else if (!$result = $this->conn->query($sql_us)) {
-            printf("<b style=\"color:red;\">Message d'erreur: %s</b><br>\n", $this->conn->error);
+            printf("<b style=\"color:red;\">Message d'erreur dans suppressionUserStory().2: %s</b><br>\n", $this->conn->error);
 						return NULL;
         }
         return true;
@@ -662,7 +654,7 @@ class Requetes {
     public function testIDUserStory($id_us) {
         $sql = "SELECT * FROM us WHERE US_id = ".$id_us.";";
         if (!$result = $this->conn->query($sql)) {
-            printf("<b style=\"color:red;\">Message d'erreur: %s</b><br>\n", $this->conn->error);
+            printf("<b style=\"color:red;\">Message d'erreur dans testIDUserStory(): %s</b><br>\n", $this->conn->error);
             return NULL;
         }
         $row = $result->fetch_assoc();
@@ -676,7 +668,7 @@ class Requetes {
     public function maxIDUserStory() {
         $sql = "SELECT MAX(US_id) FROM us;";
         if (!$res = $this->conn->query($sql)) {
-            printf("<b style=\"color:red;\">Message d'erreur: %s</b><br>\n", $this->conn->error);
+            printf("<b style=\"color:red;\">Message d'erreur dans maxIDUserStory(): %s</b><br>\n", $this->conn->error);
             return NULL;
         }
         $row = $res->fetch_assoc();
@@ -688,10 +680,67 @@ class Requetes {
         $sql = "SELECT * FROM tache WHERE US_id = ".$id_us."
 								ORDER BY TAC_dateDepart;";
          if (!$result = $this->conn->query($sql)) {
-            printf("Message d'erreur: %s<br>", $this->conn->error);
+            printf("<b style=\"color:red;\">Message d'erreur dans listeTachesUS(): %s</b><br>\n", $this->conn->error);
 						return NULL;
         }
         return $result;
+    }
+
+    // retourne les tâches par US et par état
+    public function listeTachesUSEtat($id_us, $etat) {
+        $sql = "SELECT * FROM tache
+								WHERE US_id = ".$id_us." AND TAC_etat = '".$etat."';";
+         if (!$result = $this->conn->query($sql)) {
+            printf("<b style=\"color:red;\">Message d'erreur dans listeTachesUSEtat(): %s</b><br>\n", $this->conn->error);
+						return NULL;
+        }
+        return $result;
+    }
+
+    // retourne la somme du backlog d'un projet
+    public function sommeChiffrageBacklog($id_pro) {
+        $sql = "SELECT SUM(US_chiffrageAbstrait) FROM us
+                WHERE PRO_id = ".$id_pro.";";
+        if (!$res = $this->conn->query($sql)) {
+            printf("<b style=\"color:red;\">Message d'erreur dans sommeChiffrageBacklog(): %s</b><br>\n", $this->conn->error);
+            return NULL;
+        }
+        $row = $res->fetch_assoc();
+        return (empty($row["SUM(US_chiffrageAbstrait)"])) ? 0 : $row["SUM(US_chiffrageAbstrait)"];
+    }
+
+    // retourne la somme du chiffrage d'un sprint
+    public function sommeChiffrageSprint($id_sprint) {
+        $sql = "SELECT SUM(US_chiffrageAbstrait) FROM us
+                WHERE SPR_id = ".$id_sprint.";";
+        if (!$res = $this->conn->query($sql)) {
+            printf("<b style=\"color:red;\">Message d'erreur dans sommeChiffrageSprint(): %s</b><br>\n", $this->conn->error);
+            return NULL;
+        }
+        $row = $res->fetch_assoc();
+        return (empty($row["SUM(US_chiffrageAbstrait)"])) ? 0 : $row["SUM(US_chiffrageAbstrait)"];
+    }
+
+    // retourne la liste des US commitées
+    public function listeUserStoriesAvecCommit($id_pro) {
+        $sql = "SELECT * FROM us
+                WHERE PRO_id = ".$id_pro." AND US_idDernierCommit is not NULL;";
+        if (!$result = $this->conn->query($sql)) {
+            printf("<b style=\"color:red;\">Message d'erreur dans listeUserStoriesAvecCommit(): %s</b><br>\n", $this->conn->error);
+						return NULL;
+       }
+       return $result;
+    }
+
+    // retourne la liste des US d'un sprint qui n'ont pas été commitées
+    public function listeUserStoriesSprintSansCommit($id_spr, $id_pro) {
+        $sql = "SELECT * FROM us
+                WHERE SPR_id = ".$id_spr." AND PRO_id = ".$id_pro." AND US_idDernierCommit is NULL;";
+        if (!$result = $this->conn->query($sql)) {
+            printf("<b style=\"color:red;\">Message d'erreur dans listeUserStoriesSprintSansCommit(): %s</b><br>\n", $this->conn->error);
+						return NULL;
+       }
+       return $result;
     }
 
 
@@ -703,7 +752,7 @@ class Requetes {
     public function infosSprint($id_spr) {
         $sql = "SELECT * FROM sprint WHERE SPR_id = ".$id_spr.";";
         if (!$res = $this->conn->query($sql)) {
-            printf("<b style=\"color:red;\">Message d'erreur: %s</b><br>\n", $this->conn->error);
+            printf("<b style=\"color:red;\">Message d'erreur dans infosSprint(): %s</b><br>\n", $this->conn->error);
             return NULL;
         }
         return $res;
@@ -715,7 +764,7 @@ class Requetes {
                 WHERE PRO_id = ".$id_pro."
                 ORDER BY SPR_numero ASC;";
         if (!$result = $this->conn->query($sql)) {
-            printf("<b style=\"color:red;\">Message d'erreur: %s</b><br>\n", $this->conn->error);
+            printf("<b style=\"color:red;\">Message d'erreur dans listeSprints(): %s</b><br>\n", $this->conn->error);
             return NULL;
         }
         return $result;
@@ -725,7 +774,7 @@ class Requetes {
     public function testIDSprint($id_spr) {
         $sql = "SELECT * FROM sprint WHERE SPR_id = ".$id_spr.";";
         if (!$result = $this->conn->query($sql)) {
-            printf("<b style=\"color:red;\">Message d'erreur: %s</b><br>\n", $this->conn->error);
+            printf("<b style=\"color:red;\">Message d'erreur dans testIDSprint(): %s</b><br>\n", $this->conn->error);
             return NULL;
         }
         $row = $result->fetch_assoc();
@@ -740,36 +789,49 @@ class Requetes {
         $sql = "INSERT INTO sprint (SPR_numero, SPR_dateDebut, SPR_duree, PRO_id)
                 VALUES ('".$numero."', '".$dateDebut."', '".$duree."', '".$id_pro."');";
         if (!$result = $this->conn->query($sql)) {
-            printf("<b style=\"color:red;\">Message d'erreur: %s</b><br>", $this->conn->error);
+            printf("<b style=\"color:red;\">Message d'erreur dans ajoutSprint(): %s</b><br>", $this->conn->error);
             return NULL;
         }
+        return true;
+    }
+
+    // modifie les données du sprint et retourne vrai quand c'est fait
+    public function modifSprint($id_spr, $num, $date, $duree){
+        $sql = "UPDATE sprint
+                SET SPR_numero='".$num."', SPR_dateDebut='".$date."', SPR_duree='".$duree."'
+                WHERE SPR_id=".$id_spr.";";
+        if (!$result = $this->conn->query($sql)) {
+            printf("<b style=\"color:red;\">Message d'erreur dans modifSprint(): %s</b><br>\n", $this->conn->error);
+            return NULL;
+       }
         return true;
     }
 
    // retourne vrai après avoir retiré un sprint, sinon faux
     public function supprimerSprint($id_spr) {
         $sql_ret_us = "UPDATE us SET SPR_id = NULL WHERE SPR_id = ".$id_spr.";";
+        $sql_ret_bdc = "DELETE FROM burndown_chart WHERE SPR_id = ".$id_spr.";";
         $sql_ret_spr = "DELETE FROM sprint WHERE SPR_id = ".$id_spr.";";
         if (!$result = $this->conn->query($sql_ret_us)) {
-            printf("<b style=\"color:red;\"><b style=\"color:red;\">Message d'erreur: %s</b><br>", $this->conn->error);
+            printf("<b style=\"color:red;\">Message d'erreur dans supprimerSprint().1: %s</b><br>", $this->conn->error);
+            return NULL;
+        } else if (!$result = $this->conn->query($sql_ret_bdc)) {
+            printf("<b style=\"color:red;\">Message d'erreur dans supprimerSprint().2: %s</b><br>", $this->conn->error);
             return NULL;
         } else if (!$result = $this->conn->query($sql_ret_spr)) {
-            printf("<b style=\"color:red;\">Message d'erreur: %s</b><br>", $this->conn->error);
+            printf("<b style=\"color:red;\">Message d'erreur dans supprimerSprint().3: %s</b><br>", $this->conn->error);
             return NULL;
         }
         return true;
     }
 
-    // modifie les données du projet et retourne vrai quand c'est fait
-    public function modifSprint($id_spr, $num, $date, $duree){
-        $sql = "UPDATE sprint
-                SET SPR_numero='".$num."', SPR_dateDebut='".$date."', SPR_duree='".$duree."'
-                WHERE SPR_id=".$id_spr.";";
-        if (!$result = $this->conn->query($sql)) {
-            printf("<b style=\"color:red;\">Message d'erreur: %s</b><br>\n", $this->conn->error);
-            return NULL;
-       }
-        return true;
+    // retourne les US d'un sprint
+    public function listeUserStorySprint($id_spr) {
+        $sql = "SELECT * FROM us WHERE SPR_id = ".$id_spr." ORDER BY US_priorite;";
+         if (!$result = $this->conn->query($sql)) {
+            printf("<b style=\"color:red;\">Message d'erreur dans listeUserStorySprint(): %s</b><br>\n", $this->conn->error);
+        }
+        return $result;
     }
 
     // ordonne une date : 2000-10-01 -> 01/10/00
@@ -784,7 +846,7 @@ class Requetes {
         if (!empty($id_spr)) {
             $sql = "SELECT SPR_numero FROM sprint WHERE SPR_id = ".$id_spr.";";
             if (!$result = $this->conn->query($sql)) {
-                printf("<b style=\"color:red;\">Message d'erreur: %s</b><br>\n", $this->conn->error);
+                printf("<b style=\"color:red;\">Message d'erreur dans numeroSprint(): %s</b><br>\n", $this->conn->error);
                 return NULL;
             }
             $row = $result->fetch_assoc();
@@ -794,20 +856,225 @@ class Requetes {
         }
     }
 
+    // retourne le plus grand des id de sprint
+    public function maxIDSprint() {
+        $sql = "SELECT MAX(SPR_id) FROM sprint;";
+        if (!$res = $this->conn->query($sql)) {
+            printf("<b style=\"color:red;\">Message d'erreur dans maxIDSprint(): %s</b><br>\n", $this->conn->error);
+            return NULL;
+        }
+        $row = $res->fetch_assoc();
+        return $row["MAX(SPR_id)"];
+    }
+
 
   /******************************************/
   /** Fonctions pour la gestion des tâches **/
   /******************************************/
 
+    //retourne les données de la tâche $id_tac
+    public function infosTache($id_tac) {
+        $sql = "SELECT * FROM tache WHERE TAC_id = ".$id_tac.";";
+        if (!$res = $this->conn->query($sql)) {
+            printf("<b style=\"color:red;\">Message d'erreur dans infosTache(): %s</b><br>\n", $this->conn->error);
+            return NULL;
+        }
+        return $res;
+    }
+
+    // retourne les tâches du sprint $id_spr qui ont pour état $etat
+		public function listeTachesEtatSprint($id_spr, $etat) {
+				$sql = "SELECT *	FROM tache
+								WHERE US_id IN (
+									SELECT US_id FROM us
+									WHERE SPR_id = ".$id_spr."
+									ORDER BY `US_id` ASC
+								)	AND TAC_etat = \"".$etat."\"
+								ORDER BY US_id ASC;";
+        if (!$res = $this->conn->query($sql)) {
+            printf("<b style=\"color:red;\">Message d'erreur dans listeTachesEtatSprint(): %s</b><br>\n", $this->conn->error);
+            return NULL;
+        }
+        return $res;
+		}
+
+    // retourne les tâches de l'us $id_us regroupées selon leur état
+		public function listeTachesUSEtats($id_us) {
+				//SET SESSION group_concat_max_len = 1000000;
+				$sql = "SELECT  TAC_etat,
+											 GROUP_CONCAT(
+													DISTINCT CONCAT(
+														CAST(TAC_id AS CHAR), \"|\", 
+														CAST(TAC_numero AS CHAR), \"|\", 
+														TAC_nom, \"|\", 
+														TAC_etat, \"|\", 
+														TAC_description, \"|\",
+														TAC_nbJours, \"|\",
+														CAST(TAC_dateDepart AS CHAR), \"|\", 
+														CAST(DEV_id AS CHAR), \"|\", 
+														CAST(US_id AS CHAR)
+													)
+													ORDER BY TAC_numero ASC
+													SEPARATOR \";\"
+												) AS MesTaches
+								FROM tache WHERE US_id = ".$id_us."
+								GROUP BY TAC_etat;";
+        if (!$res = $this->conn->query($sql)) {
+            printf("<b style=\"color:red;\">Message d'erreur dans listeTachesUSEtats(): %s</b><br>\n", $this->conn->error);
+            return NULL;
+        }
+        return $res;
+		}
+
+		// retourne vrai après avoir ajouté une tâche, sinon faux
+    public function ajoutTache($numero, $nom, $description, $nbJours, $dateDepart, $id_dev, $id_us) {
+				$etat = "TO DO";
+        $sql = "INSERT INTO tache (TAC_numero, TAC_nom, TAC_description, TAC_nbJours, TAC_dateDepart, TAC_etat, DEV_id, US_id)
+                VALUES ('".$numero."', '".$nom."', '".$description."', '".$nbJours."', '".$dateDepart."', '".$etat."', '".$id_dev."', '".$id_us."');";
+        if (!$result = $this->conn->query($sql)) {
+            printf("<b style=\"color:red;\">Message d'erreur dans ajoutTache(): %s</b><br>", $this->conn->error);
+            return NULL;
+        }
+        return true;
+    }
+		
+		// retourne vrai si le numero de tâche $numero_tac est non présente dans les tâches du sprint $id_spr, sinon faux
+		public function estNumeroTache($id_spr, $numero_tac) {
+        $listeUS = $this->listeUserStorySprint($id_spr);
+				while($row_us = $listeUS->fetch_assoc()) {
+					$listeTaches = $this->listeTachesUS($row_us["US_id"]);
+					while($row_tache = $listeTaches->fetch_assoc()) {
+						if($numero_tac == $row_tache["TAC_numero"]) {
+							return false;
+						}
+					}
+				}
+        return true;		
+		}
 		// retourne vrai après avoir retiré une tâche, sinon faux
-		public function suppressionTache($id_tache) {
-			$sql = "DELETE FROM tache WHERE TAC_id = ".$id_tache.";";
+		public function suppressionTache($id_tac) {
+			$sql = "DELETE FROM tache WHERE TAC_id = ".$id_tac.";";
 			if (!$result = $this->conn->query($sql)) {
-					printf("<b style=\"color:red;\">Message d'erreur: %s<br></b>", $this->conn->error);
+					printf("<b style=\"color:red;\">Message d'erreur dans suppressionTache(): %s<br></b>", $this->conn->error);
 					return NULL;
 			}
 			return true;
 		}
+
+    // modifie les données de la tâche $id_tac et retourne vrai quand c'est fait
+    public function modifTache($id_tac, $nom, $description, $nbJours, $dateDepart, $etat, $id_dev, $id_us){
+        $sql = "UPDATE tache
+                SET TAC_nom='".$nom."', TAC_description='".$description."', TAC_nbJours='".$nbJours."',	TAC_dateDepart='".$dateDepart."', TAC_etat='".$etat."', DEV_id='".$id_dev."', US_id='".$id_us."'
+                WHERE TAC_id=".$id_tac.";";
+				if (!$result = $this->conn->query($sql)) {
+            printf("<b style=\"color:red;\">Message d'erreur dans modifTache(): %s</b><br>\n", $this->conn->error);
+            return NULL;
+       }
+        return true;
+    }
+
+		// modifie l'état de la tâche $id_tac et retourne vrai quand c'est fait
+    public function modifEtatTache($id_tac, $etat){
+        $sql = "UPDATE tache
+                SET TAC_etat='".$etat."'
+                WHERE TAC_id=".$id_tac.";";
+				if (!$result = $this->conn->query($sql)) {
+            printf("<b style=\"color:red;\">Message d'erreur dans modifEtatTache(): %s</b><br>\n", $this->conn->error);
+            return NULL;
+       }
+        return true;
+    }
+
+		// modifie l'id de l'us à laquelle appartient la tâche $id_tac et retourne vrai quand c'est fait
+    public function modifUSTache($id_tac, $id_us){
+        $sql = "UPDATE tache
+                SET US_id='".$id_us."'
+                WHERE TAC_id=".$id_tac.";";
+				if (!$result = $this->conn->query($sql)) {
+            printf("<b style=\"color:red;\">Message d'erreur dans modifUSTache(): %s</b><br>\n", $this->conn->error);
+            return NULL;
+       }
+        return true;
+    }
+
+    // retourne le plus grand des id de la table tache
+    public function maxIDTache() {
+        $sql = "SELECT MAX(TAC_id) FROM tache;";
+        if (!$res = $this->conn->query($sql)) {
+            printf("<b style=\"color:red;\">Message d'erreur dans maxIDTache(): %s</b><br>\n", $this->conn->error);
+            return NULL;
+        }
+        $row = $res->fetch_assoc();
+        return $row["MAX(TAC_id)"];
+    }
+
+    // retourne vrai si l'id de la tâche existe déjà
+    public function testIDTache($id_tac) {
+        $sql = "SELECT * FROM tache WHERE TAC_id = ".$id_tac.";";
+        if (!$result = $this->conn->query($sql)) {
+            printf("<b style=\"color:red;\">Message d'erreur dans testIDTache(): %s</b><br>\n", $this->conn->error);
+            return NULL;
+        }
+        $row = $result->fetch_assoc();
+        if ($row["TAC_id"] == $id_tac) {
+            return true;
+        }
+        return false;
+    }
+
+    /*************************************************/
+    /** Fonctions pour la gestion du Burndown Chart **/
+    /*************************************************/
+
+    public function listeChiffragePlanifie($id_pro) {
+        $sql = "SELECT * FROM burndown_chart
+                WHERE PRO_id = ".$id_pro.";";
+        if (!$result = $this->conn->query($sql)) {
+            printf("<b style=\"color:red;\">Message d'erreur dans listeChiffragePlanifie(): %s</b><br>\n", $this->conn->error);
+            return NULL;
+        }
+        return $result;
+    }
+
+    public function listeChiffrageReel($id_pro) {
+        $result = $this->listeSprints($id_pro);
+        while ($row = $result->fetch_assoc()) {
+            $id_spr = $row['SPR_id'];
+            if($this->listeUserStoriesSprintSansCommit($id_spr, $id_pro)->num_rows == 0) {
+                $tab[$id_spr] = $this->sommeChiffrageSprint($id_spr);
+            }
+        }
+        return $tab;
+    }
+
+    public function modifChiffragePlanifie($id_pro) {
+        $sql = "DELETE FROM burndown_chart WHERE PRO_id = ".$id_pro.";";
+        if (!$result = $this->conn->query($sql)) {
+            printf("<b style=\"color:red;\">Message d'erreur dans modifChiffragePlanifie().1: %s<br></b>", $this->conn->error);
+            return NULL;
+        }
+        $liste_sprints = $this->listeSprints($id_pro);
+        while ($row = $liste_sprints->fetch_assoc()) {
+            $sql = "INSERT INTO burndown_chart (BDC_chargePlanifie, SPR_id, PRO_id)
+                    VALUES (".$this->sommeChiffrageSprint($row['SPR_id']).", ".$row['SPR_id'].", ".$id_pro.");";
+            if (!$result = $this->conn->query($sql)) {
+                printf("<b style=\"color:red;\">Message d'erreur dans modifChiffragePlanifie().2: %s</b><br>", $this->conn->error);
+                return NULL;
+            }
+        }
+        return true;
+    }
+
+    public function sommeChiffragePlanifie($id_pro) {
+      $sql = "SELECT SUM(BDC_chargePlanifie) FROM burndown_chart
+              WHERE PRO_id = ".$id_pro.";";
+      if (!$res = $this->conn->query($sql)) {
+          printf("<b style=\"color:red;\">Message d'erreur dans sommeChiffragePlanifie(): %s</b><br>\n", $this->conn->error);
+          return NULL;
+      }
+      $row = $res->fetch_assoc();
+      return (empty($row["SUM(BDC_chargePlanifie)"])) ? 0 : $row["SUM(BDC_chargePlanifie)"];
+    }
 
 }
 ?>
